@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="gelap">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Congklak - Permainan Tradisional Indonesia</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Latar layar permainan: hanya tampil saat bermain -->
+<div id="latar" aria-hidden="true">
+  <div id="bintang"></div>
+  <svg class="awan" viewBox="0 0 160 70" style="--d:90s;--t:-20s;top:11%;width:150px"><path d="M26 64C6 64 2 40 24 36C22 14 54 8 66 26C78 6 114 12 114 36C136 32 152 58 130 64Z"/></svg>
+  <svg class="awan" viewBox="0 0 160 70" style="--d:120s;--t:-70s;top:26%;width:210px"><path d="M26 64C6 64 2 40 24 36C22 14 54 8 66 26C78 6 114 12 114 36C136 32 152 58 130 64Z"/></svg>
+  <svg class="awan" viewBox="0 0 160 70" style="--d:75s;--t:-45s;top:5%;width:120px"><path d="M26 64C6 64 2 40 24 36C22 14 54 8 66 26C78 6 114 12 114 36C136 32 152 58 130 64Z"/></svg>
+  <svg class="benda bulan" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#fff1b8"/><circle cx="30" cy="38" r="7" fill="#f2dc93"/><circle cx="67" cy="29" r="5" fill="#f2dc93"/><circle cx="69" cy="68" r="9" fill="#f2dc93"/><path d="M33 51Q39 58 45 51M55 51Q61 58 67 51M43 65Q50 73 57 65" stroke="#7a6428" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="29" cy="61" r="5" fill="#ff9f9f" opacity=".55"/><circle cx="71" cy="61" r="5" fill="#ff9f9f" opacity=".55"/></svg>
+  <svg class="benda matahari" viewBox="0 0 120 120"><g class="sinar" fill="#ffb82e"><path d="M60 5L67 22H53Z"/><path d="M60 5L67 22H53Z" transform="rotate(30 60 60)"/><path d="M60 5L67 22H53Z" transform="rotate(60 60 60)"/><path d="M60 5L67 22H53Z" transform="rotate(90 60 60)"/><path d="M60 5L67 22H53Z" transform="rotate(120 60 60)"/><path d="M60 5L67 22H53Z" transform="rotate(150 60 60)"/><path d="M60 5L67 22H53Z" transform="rotate(180 60 60)"/><path d="M60 5L67 22H53Z" transform="rotate(210 60 60)"/><path d="M60 5L67 22H53Z" transform="rotate(240 60 60)"/><path d="M60 5L67 22H53Z" transform="rotate(270 60 60)"/><path d="M60 5L67 22H53Z" transform="rotate(300 60 60)"/><path d="M60 5L67 22H53Z" transform="rotate(330 60 60)"/></g><circle cx="60" cy="60" r="33" fill="#ffd23f"/><circle cx="49" cy="55" r="3.4" fill="#5a3b00"/><circle cx="71" cy="55" r="3.4" fill="#5a3b00"/><path d="M48 66Q60 78 72 66" stroke="#5a3b00" stroke-width="3.2" fill="none" stroke-linecap="round"/><circle cx="41" cy="65" r="5" fill="#ff9f7a" opacity=".6"/><circle cx="79" cy="65" r="5" fill="#ff9f7a" opacity=".6"/></svg>
+  <svg class="layang l1" viewBox="0 0 60 150" style="--d:5.5s;left:6%;top:24%"><path d="M30 2L54 40L30 76L6 40Z" fill="#e5484d"/><path d="M30 2L54 40L30 76Z" fill="#f5b301"/><path d="M30 2V76M6 40H54" stroke="#fff" stroke-opacity=".6" stroke-width="1.4"/><path d="M30 76C20 90 40 100 30 114C20 128 40 136 30 148" stroke="#fff" stroke-opacity=".8" fill="none" stroke-width="1.6"/><path d="M30 94L22 89V99ZM30 94L38 89V99ZM30 114L22 109V119ZM30 114L38 109V119ZM30 134L22 129V139ZM30 134L38 129V139Z" fill="#22c55e"/></svg>
+  <svg class="layang l2" viewBox="0 0 60 150" style="--d:6.5s;right:7%;top:15%"><path d="M30 2L54 40L30 76L6 40Z" fill="#3b82f6"/><path d="M30 2L54 40L30 76Z" fill="#06b6d4"/><path d="M30 2V76M6 40H54" stroke="#fff" stroke-opacity=".6" stroke-width="1.4"/><path d="M30 76C20 90 40 100 30 114C20 128 40 136 30 148" stroke="#fff" stroke-opacity=".8" fill="none" stroke-width="1.6"/><path d="M30 94L22 89V99ZM30 94L38 89V99ZM30 114L22 109V119ZM30 114L38 109V119ZM30 134L22 129V139ZM30 134L38 129V139Z" fill="#f5b301"/></svg>
+  <svg class="layang l3" viewBox="0 0 60 150" style="--d:4.8s;right:20%;top:36%"><path d="M30 2L54 40L30 76L6 40Z" fill="#a855f7"/><path d="M30 2L54 40L30 76Z" fill="#e5484d"/><path d="M30 2V76M6 40H54" stroke="#fff" stroke-opacity=".6" stroke-width="1.4"/><path d="M30 76C20 90 40 100 30 114C20 128 40 136 30 148" stroke="#fff" stroke-opacity=".8" fill="none" stroke-width="1.6"/><path d="M30 94L22 89V99ZM30 94L38 89V99ZM30 114L22 109V119ZM30 114L38 109V119ZM30 134L22 129V139ZM30 134L38 129V139Z" fill="#22c55e"/></svg>
+  <svg class="bukit" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice">
+    <path class="h1" d="M0 230C140 170 300 190 440 225S700 180 880 205S1230 170 1440 215V420H0Z"/>
+    <path class="h2" d="M0 290C180 240 330 270 520 292S840 250 1040 275S1330 262 1440 245V420H0Z"/>
+    <g transform="translate(250 278)"><rect class="g-dinding" x="0" y="-38" width="74" height="38"/><path class="g-atap" d="M-14 -36L37 -80L88 -36Z"/><rect class="g-jendela" x="30" y="-24" width="14" height="24"/><rect class="g-jendela" x="8" y="-28" width="12" height="12"/><rect class="g-jendela" x="54" y="-28" width="12" height="12"/></g>
+    <path class="h3" d="M0 360C200 322 380 352 580 360S920 336 1120 350S1360 340 1440 332V420H0Z"/>
+    <g transform="translate(130 352)"><g class="pohon"><path class="g-batang" d="M0 0C8 -40 4 -84 18 -128"/><g class="g-daun" transform="translate(18 -128)"><path d="M0 0C-20 -26 -56 -22 -74 -2C-48 -14 -20 -12 0 0Z"/><path d="M0 0C-12 -34 -40 -50 -66 -46C-40 -38 -18 -24 0 0Z"/><path d="M0 0C6 -36 26 -54 52 -56C32 -42 14 -26 0 0Z"/><path d="M0 0C22 -22 56 -22 76 -2C50 -12 22 -12 0 0Z"/><path d="M0 0C-8 14 -30 24 -56 20C-32 14 -14 8 0 0Z"/><path d="M0 0C10 14 34 22 58 16C36 10 16 6 0 0Z"/></g></g></g>
+    <g transform="translate(1290 346)"><g class="pohon pohon2"><path class="g-batang" d="M0 0C-8 -40 -4 -90 -16 -138"/><g class="g-daun" transform="translate(-16 -138)"><path d="M0 0C-20 -26 -56 -22 -74 -2C-48 -14 -20 -12 0 0Z"/><path d="M0 0C-12 -34 -40 -50 -66 -46C-40 -38 -18 -24 0 0Z"/><path d="M0 0C6 -36 26 -54 52 -56C32 -42 14 -26 0 0Z"/><path d="M0 0C22 -22 56 -22 76 -2C50 -12 22 -12 0 0Z"/><path d="M0 0C-8 14 -30 24 -56 20C-32 14 -14 8 0 0Z"/><path d="M0 0C10 14 34 22 58 16C36 10 16 6 0 0Z"/></g></g></g>
+  </svg>
+  <div id="kunang"></div>
+</div>
+<div id="konfeti" aria-hidden="true"></div>
+
+<button id="mb" class="sek" aria-label="Nyalakan atau matikan musik">🔊</button>
+
+<section id="l-menu" class="layar aktif">
+  <svg class="batik" aria-hidden="true"><defs><pattern id="kawung" width="56" height="56" patternUnits="userSpaceOnUse"><g fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="28" cy="14" rx="9" ry="14"/><ellipse cx="28" cy="42" rx="9" ry="14"/><ellipse cx="14" cy="28" rx="14" ry="9"/><ellipse cx="42" cy="28" rx="14" ry="9"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#kawung)"/></svg>
+  <svg class="cakrawala" viewBox="0 0 1200 170" preserveAspectRatio="xMidYMax slice" fill="currentColor" fill-rule="evenodd" aria-hidden="true">
+    <path d="M60 170v-20h200v20zM76 150v-18h168v18zM92 132v-16h136v16zM110 116v-14h100v14zM160 102c-18 0-26-10-26-20s8-18 26-18 26 8 26 18-8 20-26 20zM158 64V40h4v24z"/>
+    <circle cx="84" cy="126" r="6"/><circle cx="236" cy="126" r="6"/><circle cx="68" cy="144" r="6"/><circle cx="252" cy="144" r="6"/><circle cx="116" cy="97" r="5"/><circle cx="204" cy="97" r="5"/>
+    <path d="M316 130C336 124 346 104 350 74C362 100 386 110 410 108C416 96 424 84 440 66C456 84 464 96 470 108C494 110 518 100 530 74C534 104 544 124 564 130V170H316zM425 170v-22h30v22z"/>
+    <path d="M680 40C705 70 738 100 730 130C726 156 702 170 680 170S634 156 630 130C622 100 655 70 680 40zM680 84C692 104 700 124 680 156C660 124 668 104 680 84z"/>
+    <path d="M800 150h200l-24 20H826zM898 50h4v100h-4zM902 56L968 146H902zM898 70L846 146H898zM1000 150l30-16-4 18z"/>
+    <path d="M1064 170V74h8v96zM1148 170V74h8v96zM1060 70h100v8h-100zM1110 94a30 30 0 1 0 .01 0zM1110 112a12 12 0 1 1-.01 0z"/>
+  </svg>
+  <svg id="hero" class="hero" viewBox="0 0 420 150" role="img" aria-label="Papan congklak"></svg>
+  <h1>Congklak</h1>
+  <div class="hias"></div>
+  <p>Permainan tradisional Indonesia</p>
+  <button data-ke="mode">Main</button>
+  <button class="sek" data-ke="skin">Skin</button>
+  <button class="sek" data-ke="karakter">Karakter</button>
+  <button class="sek" data-ke="atur">Pengaturan</button>
+  <button class="sek" data-ke="cara">Cara Bermain</button>
+  <button class="sek" data-ke="tentang">Tentang</button>
+</section>
+
+<section id="l-mode" class="layar">
+  <h2>Pilih Mode</h2>
+  <button data-ke="level">Lawan Komputer</button>
+  <button data-aksi="dua">2 Pemain</button>
+  <button class="sek" data-ke="menu">Kembali</button>
+</section>
+
+<section id="l-level" class="layar">
+  <h2>Pilih Level</h2>
+  <div class="kartu">
+    <b>Siapa jalan duluan?</b>
+    <div class="baris">
+      <label><input type="radio" name="dl" value="pemain" checked> Pemain</label>
+      <label><input type="radio" name="dl" value="komputer"> Komputer</label>
+      <label><input type="radio" name="dl" value="acak"> Acak</label>
+    </div>
+  </div>
+  <button data-lv="1">Mudah<small>Komputer memilih lubang secara acak</small></button>
+  <button data-lv="2">Sedang<small>Komputer mengejar biji terbanyak, sesekali salah langkah</small></button>
+  <button data-lv="3">Sulit<small>Komputer menghitung beberapa langkah ke depan</small></button>
+  <button class="sek" data-ke="mode">Kembali</button>
+</section>
+
+<section id="l-game" class="layar">
+  <div class="bar"><button id="bJeda" class="sek">⏸ Jeda</button><div id="info"></div></div>
+  <div id="kartu2" class="pemain"><div id="av2" class="maskot"></div><div id="nm2" class="nama"></div><div id="gl2" class="gelembung"></div></div>
+  <div id="papan" class="tema">
+    <div id="tangan" class="sembunyi"><div class="tumpuk"></div><span></span></div>
+  </div>
+  <div id="kartu1" class="pemain"><div id="av1" class="maskot"></div><div id="nm1" class="nama"></div><div id="gl1" class="gelembung"></div></div>
+</section>
+
+<section id="l-skin" class="layar">
+  <h2>Skin</h2>
+  <div class="kartu">
+    <b>Papan</b><div class="baris" id="sPapan"></div>
+    <b>Lubang</b><div class="baris" id="sLubang"></div>
+    <b>Biji</b><div class="baris" id="sBiji"></div>
+    <b>Pratinjau</b>
+    <div id="prev" class="tema"></div>
+  </div>
+  <button class="sek" data-ke="menu">Kembali</button>
+</section>
+
+<section id="l-karakter" class="layar">
+  <h2>Karakter</h2>
+  <div class="kartu">
+    <b>Pemain 1</b><div class="pilih-kar" id="kar1"></div>
+    <b>Pemain 2 / Komputer</b><div class="pilih-kar" id="kar2"></div>
+    <p class="kecil">Jika dua pemain memilih karakter yang sama, karakter keduanya saling bertukar.</p>
+  </div>
+  <button class="sek" id="kbKar">Kembali</button>
+</section>
+
+<section id="l-atur" class="layar">
+  <h2>Pengaturan</h2>
+  <div class="kartu">
+    <label>Volume musik <input type="range" id="vm" min="0" max="100"></label>
+    <label>Volume efek <input type="range" id="ve" min="0" max="100"></label>
+    <label><span><input type="checkbox" id="mu"> Bisukan musik</span> <button class="sek" id="lewati">Lewati lagu</button></label>
+    <small id="lagu">Musik belum diputar</small>
+    <button class="sek" data-ke="musik">Pilih musik</button>
+    <label>Biji awal per lubang <select id="bi"><option>5</option><option>7</option></select></label>
+    <label><span><input type="checkbox" id="te"> Aktifkan aturan tembak</span></label>
+    <label>Kecepatan animasi <select id="ke"><option value="600">Lambat</option><option value="350">Normal</option><option value="170">Cepat</option></select></label>
+    <label>Tema <select id="th"><option value="terang">Terang</option><option value="gelap">Gelap</option></select></label>
+    <button class="sek" id="reset">Kembalikan pengaturan awal</button>
+  </div>
+  <button class="sek" id="kbAtur">Kembali</button>
+</section>
+
+<section id="l-musik" class="layar">
+  <h2>Pilih Musik</h2>
+  <div class="kartu">
+    <div class="baris">
+      <label><input type="radio" name="mm" value="semua"> Putar semua lagu</label>
+      <label><input type="radio" name="mm" value="pilih"> Putar yang dipilih saja</label>
+    </div>
+    <b>Pengulangan lagu</b>
+    <div class="baris">
+      <label><input type="radio" name="ul" value="semua"> Ulangi semua lagu</label>
+      <label><input type="radio" name="ul" value="satu"> Ulangi satu lagu</label>
+      <label><input type="radio" name="ul" value="mati"> Tanpa pengulangan</label>
+    </div>
+    <div class="baris">
+      <button class="sek" id="pSemua">Pilih semua lagu</button>
+      <button class="sek" id="pDaerah">Lagu daerah saja</button>
+      <button class="sek" id="pAnak">Lagu anak-anak saja</button>
+    </div>
+    <ul id="daftarMusik" class="musik"></ul>
+    <small>Tombol ▶ memutar lagu itu sekarang. "Ulangi satu lagu" mengulang lagu yang sedang diputar, dan "Tanpa pengulangan" berhenti setelah lagu terakhir.</small>
+  </div>
+  <button class="sek" data-ke="atur">Kembali</button>
+</section>
+
+<section id="l-cara" class="layar">
+  <h2>Cara Bermain</h2>
+  <div class="kartu">
+    <ul>
+      <li>Dua pemain, masing-masing punya 7 lubang kecil dan 1 lumbung (lubang besar di sisi kanan pemain).</li>
+      <li>Pilih satu lubang di sisimu. Semua biji di dalamnya ditaburkan satu per satu berlawanan arah jarum jam, melewati lumbungmu tetapi tidak lumbung lawan.</li>
+      <li>Biji terakhir jatuh di lumbungmu: kamu dapat giliran tambahan.</li>
+      <li>Biji terakhir jatuh di lubang yang masih berisi: semua biji di lubang itu diambil dan ditaburkan lagi.</li>
+      <li>Biji terakhir jatuh di lubang kosong sisimu: kamu menembak, yaitu mengambil biji di lubang seberang (jika ada) bersama biji terakhirmu ke lumbung.</li>
+      <li>Biji terakhir jatuh di lubang kosong sisi lawan: giliran berpindah.</li>
+      <li>Permainan selesai saat salah satu sisi kosong. Biji yang tersisa masuk ke lumbung pemilik sisinya, dan yang lumbungnya paling banyak menang.</li>
+    </ul>
+  </div>
+  <button class="sek" data-ke="menu">Kembali</button>
+</section>
+
+<section id="l-tentang" class="layar">
+  <h2>Tentang</h2>
+  <div class="kartu">
+    <p>Congklak, juga dikenal sebagai dakon, adalah permainan tradisional yang dimainkan di berbagai daerah Indonesia dengan aturan yang sedikit berbeda-beda. Versi ini memakai satu set aturan umum yang dijelaskan di Cara Bermain.</p>
+    <p>Musik latar:</p>
+    <ul id="daftarLagu"></ul>
+    <p>Dibuat oleh Ahmad Farid Zulkarnain (24020063)</p>
+  </div>
+  <button class="sek" data-ke="menu">Kembali</button>
+</section>
+
+<div id="overlay" class="overlay"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

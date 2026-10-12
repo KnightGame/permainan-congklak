@@ -1,0 +1,191 @@
+:root{--lubang:#4a2c12;--biji:#e8d9b5;--bg:#e9eef3;--teks:#17213a;--kartu:#fff;--aksen:#1f3a7a;--ontn:#fff;--sorot:#e0a526}
+[data-theme=gelap]{--bg:#111a2e;--teks:#eef1f7;--kartu:#1b2742;--aksen:#e0a526;--ontn:#1a1305}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",system-ui,sans-serif;background:var(--bg);color:var(--teks);min-height:100vh}
+h1,h2{font-family:"Palatino Linotype",Palatino,"Book Antiqua",serif;margin:0}
+h1{font-size:clamp(2.8rem,10vw,4.6rem);letter-spacing:.02em}
+.hias{width:min(280px,70vw);height:14px;background:radial-gradient(circle,var(--aksen) 5px,transparent 6px) 0 0/28px 14px repeat-x}
+
+/* ===== Layar & komponen umum ===== */
+.layar{display:none;position:relative;z-index:1;min-height:100vh;padding:20px;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center}
+.layar.aktif{display:flex}
+button{font:inherit;cursor:pointer;border:2px solid var(--aksen);border-radius:10px;padding:11px 22px;background:var(--aksen);color:var(--ontn);min-width:210px}
+button.sek{background:transparent;color:var(--teks)}
+button:focus-visible,.lub:focus-visible{outline:3px solid var(--sorot);outline-offset:2px}
+button small{display:block;opacity:.8;font-size:.78rem}
+.kartu{background:var(--kartu);border-radius:14px;padding:16px;max-width:540px;width:100%;text-align:left;display:flex;flex-direction:column;gap:10px;line-height:1.5}
+.kartu label{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.kartu ul{margin:0;padding-left:20px}
+select{font:inherit;padding:4px}
+.baris{display:flex;gap:8px;flex-wrap:wrap}
+.baris button{min-width:0;padding:8px 14px}
+.pilih{outline:3px solid var(--sorot);outline-offset:2px}
+.bar{display:flex;gap:12px;align-items:center;width:min(96vw,860px);justify-content:space-between}
+.bar button{min-width:0;padding:6px 14px}
+.overlay{position:fixed;inset:0;background:#000a;backdrop-filter:blur(5px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;text-align:center;z-index:5}
+.panel{background:var(--kartu);color:var(--teks);padding:24px;border-radius:16px;display:flex;flex-direction:column;gap:12px;min-width:min(86vw,300px);box-shadow:0 12px 40px #000a}
+#mb{position:fixed;top:10px;right:10px;min-width:0;padding:6px 11px;z-index:6}
+
+/* ===== Papan (tekstur berbeda-beda) ===== */
+.tema{position:relative;border-radius:26px;padding:12px;box-shadow:0 10px 28px #0006}
+#papan{display:grid;grid-template-columns:1.15fr repeat(7,1fr) 1.15fr;grid-template-rows:1fr 1fr;gap:8px;width:min(96vw,860px)}
+#prev{display:flex;gap:10px;align-items:center;width:fit-content;padding:14px}
+#prev .lub{width:74px}
+[data-papan=jati]{--lubang:#4a2c12}
+[data-papan=jati] .tema{background:repeating-linear-gradient(92deg,#0000 0 7px,#0002 7px 8px,#0000 8px 17px),linear-gradient(#a06a34,#7b4b22)}
+[data-papan=eboni]{--lubang:#150c05}
+[data-papan=eboni] .tema{background:repeating-linear-gradient(92deg,#0000 0 9px,#fff1 9px 10px,#0000 10px 21px),#33200f;box-shadow:inset 0 0 0 4px #c9a23a,0 10px 28px #0006}
+[data-papan=sogan]{--lubang:#4e3210}
+[data-papan=sogan] .tema{background:linear-gradient(45deg,#0003 25%,#0000 25% 75%,#0003 75%) 0 0/26px 26px,linear-gradient(45deg,#0003 25%,#0000 25% 75%,#0003 75%) 13px 13px/26px 26px,#a7762c}
+[data-papan=indigo]{--lubang:#0f1c3d}
+[data-papan=indigo] .tema{background:radial-gradient(circle,#ffffff38 2px,#0000 3px) 0 0/22px 22px,radial-gradient(circle,#ffffff22 2px,#0000 3px) 11px 11px/22px 22px,#203a72}
+[data-papan=bambu]{--lubang:#4d5a1d}
+[data-papan=bambu] .tema{background:repeating-linear-gradient(90deg,#ced98f 0 38px,#8c9b47 38px 41px)}
+
+/* ===== Lubang (gaya berbeda-beda) ===== */
+.lub{position:relative;aspect-ratio:1;border-radius:50%;background:var(--lubang);box-shadow:inset 0 4px 9px #000a}
+[data-lubang=emas] .lub{box-shadow:inset 0 4px 9px #000a,0 0 0 3px #d4a73a}
+[data-lubang=ukir] .lub{box-shadow:inset 0 4px 9px #000a,0 0 0 3px #0005,0 0 0 5px #ffffff30}
+[data-lubang=kotak] .lub:not(.lumbung){border-radius:26%}
+.lub.lumbung{aspect-ratio:auto;border-radius:999px/70px}
+.lub.bisa{outline:3px solid var(--sorot);cursor:pointer}
+.n{position:absolute;right:7%;bottom:3%;font-size:clamp(.6rem,2vw,.85rem);color:#fff;background:#0008;border-radius:8px;padding:0 5px}
+.lub.pop{animation:pop .3s ease-out}
+.lub.kena{animation:kena .5s ease-out}
+@keyframes pop{40%{transform:scale(1.07);filter:brightness(1.3)}}
+@keyframes kena{50%{box-shadow:inset 0 4px 9px #000a,0 0 0 5px #ff5b4a}}
+
+/* ===== Biji (jenis berbeda-beda, bukan hanya warna) ===== */
+.b{position:absolute;width:15%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%) rotate(var(--r,0deg));box-shadow:inset -2px -2px 3px #0005,0 1px 2px #0007;background:var(--biji)}
+[data-biji=kelereng] .b{background:radial-gradient(circle at 32% 28%,#fffa 0 16%,#fff0 36%),var(--c,#3b82f6)}
+[data-biji=sawo] .b{width:19%;aspect-ratio:1.45;background:linear-gradient(0deg,#0000 44%,#e2c79a77 44% 56%,#0000 56%),radial-gradient(circle at 30% 30%,#a16a38,#4a2a12)}
+[data-biji=saga] .b{background:radial-gradient(circle at 50% 72%,#111 0 15%,#0000 17%),radial-gradient(circle at 32% 28%,#ff9d8d,#d62020 60%,#8f1111)}
+[data-biji=kerang] .b{width:18%;aspect-ratio:1.15;border-radius:50% 50% 50% 50%/78% 78% 22% 22%;background:repeating-linear-gradient(90deg,#fff5 0 2px,#0000 2px 5px),radial-gradient(circle at 50% 80%,#fbefe8,#e6c3b3)}
+[data-biji=batu] .b{border-radius:42% 58% 55% 45%/50% 40% 60% 50%;background:radial-gradient(circle at 70% 70%,#3336 0 8%,#0000 10%),radial-gradient(circle at 35% 30%,#c0c4c9,#686d73)}
+
+/* ===== Tangan: tumpukan biji yang diangkat, berpindah, lalu dijatuhkan satu per satu ===== */
+#tangan{position:absolute;width:clamp(46px,7vw,66px);aspect-ratio:1;z-index:6;pointer-events:none;transform:translate(-50%,-50%);transition-property:left,top,opacity;transition-timing-function:cubic-bezier(.45,0,.25,1)}
+#tangan.sembunyi{opacity:0}
+.tumpuk{position:absolute;left:0;top:-50%;width:100%;height:100%;transform:scale(var(--s,1));transform-origin:50% 80%;transition:transform .3s ease-out;filter:drop-shadow(0 9px 6px #0008)}
+.tumpuk .b{width:30%;box-shadow:inset -2px -2px 3px #0005}
+#tangan span{position:absolute;left:80%;bottom:50%;min-width:20px;height:20px;border-radius:10px;background:#fff;color:#111;font-size:.72rem;font-weight:bold;line-height:20px;text-align:center;padding:0 5px;box-shadow:0 2px 5px #0007}
+#tangan span:empty{display:none}
+.jatuh{z-index:4;pointer-events:none} /* biji yang dijatuhkan selalu di bawah tumpukan */
+
+/* ===== Pilih musik ===== */
+.musik{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.musik li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 10px;border-radius:10px;border:2px solid transparent}
+.musik li.main{border-color:var(--sorot)}
+.kartu .musik label{justify-content:flex-start;flex:1}
+.musik button{min-width:0;padding:4px 12px}
+button:disabled{opacity:.45;cursor:default}
+
+/* ===== Lobi: batik, papan congklak, dan cakrawala budaya ===== */
+#l-menu{position:relative;overflow:hidden;padding-bottom:clamp(110px,16vw,190px)}
+#l-menu>:not(.batik):not(.cakrawala){position:relative;z-index:1}
+.batik{position:absolute;inset:0;width:100%;height:100%;color:var(--sorot);opacity:.09;z-index:0}
+.cakrawala{position:absolute;left:0;bottom:0;width:100%;height:clamp(100px,15vw,190px);color:var(--sorot);opacity:.3;z-index:0;pointer-events:none}
+.hero{width:min(400px,78vw);filter:drop-shadow(0 8px 14px #0008);animation:ambang 5s ease-in-out infinite}
+@keyframes ambang{50%{transform:translateY(-6px)}}
+.budaya{margin:0;font-size:.85rem;opacity:.75;letter-spacing:.04em}
+@media (prefers-reduced-motion:reduce){.hero{animation:none}}
+
+/* ===== Layar permainan: latar bergambar ===== */
+:root{--lg1:#5fb8ee;--lg2:#b5e5fb;--lg3:#fff0c8;--b1:#8fd77a;--b2:#5cbc62;--b3:#3a9a52;--pohon:#2b6a3b;--awan:#ffffffee;--gubuk:#c58b4f;--atap:#8a4b2a;--jendela:#ffe9a8;--kartu-t:#ffffffe8}
+[data-theme=gelap]{--lg1:#0c1535;--lg2:#202c64;--lg3:#473a82;--b1:#2a4a70;--b2:#1c3a58;--b3:#112a40;--pohon:#0a1b2b;--awan:#9fb2ff30;--gubuk:#33465f;--atap:#1b2a3f;--jendela:#ffd27a;--kartu-t:#1b2742e8}
+#latar{position:fixed;inset:0;z-index:0;overflow:hidden;display:none;pointer-events:none;background:linear-gradient(var(--lg1),var(--lg2) 62%,var(--lg3))}
+.dimain #latar{display:block}
+#bintang,#kunang{position:absolute;inset:0}
+.benda{position:absolute;left:8%;top:8%;width:clamp(70px,9vw,130px)}
+[data-theme=terang] .bulan,[data-theme=gelap] .matahari,[data-theme=terang] .bintang,[data-theme=terang] .kunang{display:none}
+.bulan{filter:drop-shadow(0 0 26px #fff1b866);animation:napas 5s ease-in-out infinite alternate}
+@keyframes napas{to{transform:scale(1.05);filter:drop-shadow(0 0 40px #fff1b8aa)}}
+.matahari .sinar{transform-box:fill-box;transform-origin:center;animation:putar 60s linear infinite}
+@keyframes putar{to{transform:rotate(360deg)}}
+.awan{position:absolute;left:0;fill:var(--awan);animation:awan var(--d,90s) linear var(--t,0s) infinite}
+@keyframes awan{from{transform:translateX(-25vw)}to{transform:translateX(115vw)}}
+.bintang{position:absolute;width:var(--u);height:var(--u);border-radius:50%;background:#fff;opacity:.2;animation:kelip var(--d) ease-in-out var(--t) infinite}
+@keyframes kelip{50%{opacity:1;transform:scale(1.5)}}
+.kunang{position:absolute;width:6px;height:6px;border-radius:50%;background:#ffe98a;box-shadow:0 0 9px 3px #ffe98a99;animation:terbang var(--d) ease-in-out var(--t) infinite alternate,kelip var(--d) ease-in-out var(--t) infinite}
+@keyframes terbang{to{translate:var(--x) var(--y)}}
+.layang{position:absolute;width:clamp(38px,4.6vw,62px);transform-origin:50% 0;animation:layang var(--d,5s) ease-in-out infinite alternate}
+@keyframes layang{from{transform:translate(-8px,0) rotate(-8deg)}to{transform:translate(10px,-16px) rotate(8deg)}}
+.bukit{position:absolute;left:0;bottom:0;width:100%;height:clamp(200px,40vh,440px)}
+.h1{fill:var(--b1)}.h2{fill:var(--b2)}.h3{fill:var(--b3)}
+.g-dinding{fill:var(--gubuk)}.g-atap{fill:var(--atap)}.g-jendela{fill:var(--jendela)}
+[data-theme=gelap] .g-jendela{filter:drop-shadow(0 0 6px #ffd27a)}
+.g-batang{fill:none;stroke:var(--pohon);stroke-width:9;stroke-linecap:round}.g-daun{fill:var(--pohon)}
+.pohon{transform-origin:0 0;animation:goyang 5s ease-in-out infinite alternate}
+.pohon2{animation-duration:6.5s;animation-delay:-2s}
+@keyframes goyang{from{transform:rotate(-1.6deg)}to{transform:rotate(2deg)}}
+@media (max-width:700px){.l2,.l3{display:none}}
+
+/* ===== Kartu pemain, maskot, dan gelembung bicara ===== */
+.pemain{position:relative;display:flex;align-items:center;gap:12px;padding:6px 22px 6px 8px;border-radius:999px;background:var(--kartu-t);border:3px solid transparent;box-shadow:0 6px 18px #0004;transition:border-color .3s,box-shadow .3s}
+.pemain.giliran{border-color:var(--sorot);box-shadow:0 0 0 5px #e0a52638,0 8px 24px #0006}
+.nama{display:flex;flex-direction:column;align-items:flex-start;text-align:left;line-height:1.25}
+.pn{font-weight:bold;font-size:1.08rem}
+.ps{font-size:.88rem;opacity:.9}
+.ps::before{content:"";display:inline-block;width:.95em;height:.95em;margin-right:.35em;vertical-align:-.12em;background:#f5b301;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+#info{padding:6px 14px;border-radius:999px;background:var(--kartu-t);font-weight:bold}
+#bJeda{background:var(--kartu-t)}
+#l-game{gap:16px}
+
+.maskot{position:relative;width:clamp(60px,8.5vw,88px);aspect-ratio:1;flex:none;transform-origin:50% 100%}
+.maskot svg{display:block;width:100%;height:100%;overflow:visible;transform-origin:50% 100%;filter:drop-shadow(0 4px 5px #0005)}
+.maskot.giliran{animation:loncat 1.2s ease-in-out infinite}
+@keyframes loncat{50%{transform:translateY(-7px) rotate(-3deg)}}
+.maskot .mata-s,.maskot .mt-s,.maskot .mt-d,.maskot .mt-o{display:none}
+.maskot.senang .mata-n,.maskot.senang .mt-n{display:none}
+.maskot.senang .mata-s,.maskot.senang .mt-s{display:inline}
+.maskot.sedih .mt-n{display:none}.maskot.sedih .mt-d{display:inline}
+.maskot.kaget .mt-n{display:none}.maskot.kaget .mt-o{display:inline}
+.kedip{transform-box:fill-box;transform-origin:center;animation:kedip 5.5s infinite}
+#av2 .kedip{animation-duration:6.7s}
+@keyframes kedip{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+.maskot svg.lompat{animation:lompat .75s ease-out}
+@keyframes lompat{30%{transform:translateY(-24%) scale(.94,1.08)}60%{transform:scale(1.1,.9)}}
+.maskot.menari svg{animation:menari .55s ease-in-out infinite alternate}
+@keyframes menari{from{transform:rotate(-9deg) translateY(0)}to{transform:rotate(9deg) translateY(-10%)}}
+.maskot.besar{width:120px}
+.juara{display:flex;gap:8px;justify-content:center}
+
+.gelembung{position:absolute;left:calc(100% + 12px);top:50%;padding:8px 14px;border-radius:18px;background:#fff;color:#1b2342;font-weight:bold;font-size:.95rem;line-height:1.25;white-space:nowrap;box-shadow:0 6px 16px #0005;opacity:0;transform:translateY(-50%) scale(.6);transform-origin:left center;pointer-events:none;z-index:3;transition:opacity .2s,transform .25s cubic-bezier(.3,1.6,.5,1)}
+.gelembung::before{content:"";position:absolute;left:-6px;top:50%;width:13px;height:13px;background:#fff;border-radius:3px;transform:translateY(-50%) rotate(45deg)}
+.gelembung.tampil{opacity:1;transform:translateY(-50%) scale(1)}
+@media (max-width:640px){
+  .gelembung{left:50%;top:auto;bottom:calc(100% + 10px);transform:translateX(-50%) scale(.6);transform-origin:bottom center}
+  .gelembung.tampil{transform:translateX(-50%) scale(1)}
+  .gelembung::before{left:50%;top:auto;bottom:-6px;transform:translateX(-50%) rotate(45deg)}
+  #gl1{top:calc(100% + 10px);bottom:auto;transform-origin:top center} /* pemain bawah: gelembung di bawah kartu agar papan tidak tertutup */
+  #gl1::before{top:-6px;bottom:auto}
+  .l1{top:13%;left:auto;right:9%}
+}
+
+/* ===== Efek: percikan bintang, skor melayang, konfeti ===== */
+.pcr{position:absolute;z-index:7;width:13px;height:13px;background:var(--c,#ffd23f);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);pointer-events:none;animation:percik .8s cubic-bezier(.1,.7,.3,1) forwards}
+@keyframes percik{from{opacity:1;transform:translate(-50%,-50%) scale(.4)}to{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.4) rotate(240deg)}}
+.skor{position:absolute;z-index:7;font-weight:900;font-size:clamp(1rem,2.6vw,1.5rem);color:#fff;text-shadow:0 2px 0 #0009,0 0 10px #ffd23f;pointer-events:none;animation:naik 1.1s ease-out forwards}
+.skor.besar{font-size:clamp(1.7rem,4.6vw,2.7rem);color:#ffd23f}
+@keyframes naik{from{opacity:0;transform:translate(-50%,-30%) scale(.6)}20%{opacity:1;transform:translate(-50%,-90%) scale(1.15)}to{opacity:0;transform:translate(-50%,-230%) scale(1)}}
+#konfeti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:8}
+#konfeti i{position:absolute;top:-4vh;width:var(--w);height:var(--h);background:var(--c);border-radius:var(--r);opacity:0;animation:konfeti var(--d) linear var(--t) forwards}
+@keyframes konfeti{0%{opacity:1;transform:translate3d(0,0,0) rotate(0)}100%{opacity:1;transform:translate3d(var(--x),110vh,0) rotate(var(--rot))}}
+
+/* ===== Pilih musik: kelompok lagu ===== */
+.musik li.judul{border:none;font-weight:bold;opacity:.8;padding:8px 10px 0}
+.musik li.hilang{opacity:.5}
+#daftarLagu b{display:block;margin-top:6px}
+@media (prefers-reduced-motion:reduce){#latar *,.maskot,.maskot *{animation:none!important}.gelembung{transition:none}#konfeti{display:none}}
+
+/* ===== Pilihan karakter ===== */
+.pilih-kar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 14px}
+.kar{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:14px;background:var(--bg);color:var(--teks);border:2px solid transparent;font-size:.78rem;cursor:pointer}
+.kar.pilih{border-color:var(--aksen);background:var(--kartu);box-shadow:0 0 0 2px var(--aksen) inset}
+.kar:hover{transform:translateY(-2px)}
+.maskot.kecil{width:clamp(44px,12vw,62px)}
+.kartu p.kecil{font-size:.8rem;opacity:.8;margin:0}
+@media (max-width:420px){.pilih-kar{grid-template-columns:repeat(3,1fr)}}
+.pilih-kar{width:100%}
+.pilih-kar .kar{min-width:0;width:auto;margin:0;padding:8px 2px;font-size:.74rem}
+.pilih-kar .kar span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
